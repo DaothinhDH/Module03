@@ -1,4 +1,4 @@
-package Baitap;
+package Baitap.Baitap1;
 
 import java.util.Scanner;
 
@@ -10,11 +10,10 @@ public class Cricle {
     private  double radius;
 
     private  String color;
-
+    // constructor
     public void Circle(double radius, String color){
         this.radius = radius;
         this.color = color;
-
     }
 
     //3.Method
