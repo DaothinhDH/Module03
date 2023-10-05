@@ -7,7 +7,7 @@ public class Bt1 {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập chuỗi muốn kiểm tra");
         String chuoi = scanner.nextLine();
-        System.out.println("Chuỗi rỗng " +isEmptyString(chuoi) );
+        System.out.println("Chuỗi rỗng " +isEmptyString(chuoi));
 
     }
     public static boolean isEmptyString(String str){

@@ -16,7 +16,6 @@ public class Baitap1 {
 
         // Hiển thị mảng rỗng ban đầu
         System.out.println(Arrays.toString(arr));
-
         // Nhập giá trị cho từng phần tử trong mảng
         for (int i = 0; i < arr.length; i++) {
             System.out.println("Nhập phần tử thứ " + (i+1) + ":");

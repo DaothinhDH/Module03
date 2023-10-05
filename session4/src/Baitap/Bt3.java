@@ -8,7 +8,6 @@ public class Bt3 {
         String chuoi = "Daothinh";
         StringBuffer str = new StringBuffer(chuoi);
         System.out.println(str.reverse());
-
     }
 
 
