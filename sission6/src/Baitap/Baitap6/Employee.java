@@ -1,4 +1,4 @@
-package Baitap6;
+package Baitap.Baitap6;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
@@ -34,7 +34,6 @@ public class Employee {
 
     public void  inputData(){
         Scanner scanner = new Scanner(System.in);
-
         System.out.println("Nhập vào tên nhân viên");
         this.employeeName = scanner.nextLine();
         System.out.println("Nhập vào tuổi nhân viên");

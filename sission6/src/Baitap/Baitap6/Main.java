@@ -1,4 +1,4 @@
-package Baitap6;
+package Baitap.Baitap6;
 
 public class Main {
     public static void main(String[] args) {
