@@ -55,7 +55,6 @@ public class Book {
 
     public void inputData(Scanner scanner) {
         System.out.println("Nhập tên sách");
-        scanner.nextLine();
         while (true) {
             this.bookName = scanner.nextLine();
             if (bookName.isEmpty()) {
