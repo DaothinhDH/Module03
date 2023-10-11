@@ -1,12 +1,12 @@
-package Thuchanh.Thuchanh3;
+package BAITAP.baitap5;
 
-public class Shape {
-    private String color = "green";
-    private boolean filed = true;
+public  class Shape {
+  private String color = "green";
+  private boolean filed = true;
 
-    public Shape() {
-    }
 
+  public Shape(){
+  }
     public Shape(String color, boolean filed) {
         this.color = color;
         this.filed = filed;
