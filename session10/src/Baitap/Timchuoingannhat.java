@@ -7,11 +7,11 @@ import java.util.List;
 
 public class Timchuoingannhat {
     public static void main(String[] args) {
-        String string = "Th class String includes methods for examining individual characters of the sequence, for comparing strings";
+        String string = "Th class String includes methods or examining individual characters of the sequence, or comparing strings";
         List<String> list = Arrays.asList(string.split(" "));
         System.out.println(list);
         List<String> list2 = new ArrayList<>();
-        int min = 10;
+        int min = string.length();
         for (String s : list) {
             if (s.length() < min){
                 min = s.length();
