@@ -13,7 +13,6 @@ public class TinhTongSoNguyen {
             int b = scanner.nextInt();
             sum = a + b;
             System.out.println("Tổng của 2 số là: "+sum);
-
         }catch (Exception e) {
             System.out.println("Lỗi: Bạn phải nhập vào 1 số  nguyên ! Hãy nhập lại");
             scanner.nextLine();
