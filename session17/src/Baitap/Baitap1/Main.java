@@ -114,7 +114,7 @@ public class Main {
             productList = (List<Product>) objectInputStream.readObject();
             System.out.println("Đã tải danh sách sản phẩm từ file " + fileProduct);
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+
         }
     }
 
