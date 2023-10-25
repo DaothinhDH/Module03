@@ -20,11 +20,18 @@ public class StudentServiceIMPL implements IStudent {
 
     @Override
     public void update(Student student) {
+        Student studentEdit = findById(student.getStudentId());
+        studentEdit.setStudentName(student.getStudentName());
+        studentEdit.setClassrom(student.getClassrom());
+        studentEdit.setAddress(student.getAddress());
+        studentEdit.setPhone(student.getPhone());
+
 
     }
 
     @Override
     public void deleteByid(int id) {
+        
 
     }
 
