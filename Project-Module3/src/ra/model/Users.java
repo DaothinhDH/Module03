@@ -1,8 +1,11 @@
 package ra.model;
 
+import ra.config.Color;
+
 import java.io.Serializable;
 
 public class Users implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private String name;
     private String username;
@@ -82,14 +85,17 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", status=" + status +
-                ", role=" + role +
-                '}';
+        String horizontalLine = "--------------------------------------------------";
+        return Color.GREEN + horizontalLine +
+                "\n" + Color.YELLOW + "User\tId: " + Color.RESET + id +
+                "\t" + Color.YELLOW + "Name: " + Color.RESET + name +
+                "\t" + Color.YELLOW + "Username: " + Color.RESET + username +
+                "\t" + Color.YELLOW + "Password: " + Color.RESET + password +
+                "\t" + Color.YELLOW + "Email: " + Color.RESET + email +
+                "\t" + Color.YELLOW + "Status: " + Color.RESET + status +
+                "\t" + Color.YELLOW + "Role: " + Color.RESET + role +
+                "\n" + Color.GREEN + horizontalLine;
+
     }
+
 }

@@ -1,4 +1,6 @@
-package ra.sevice;
+package sevice;
+
+import ra.model.Products;
 
 import java.util.List;
 
@@ -9,4 +11,7 @@ public interface IGenericService<T> {
     T findById(int id);
     int getNewId();
     void updateData();
+
+    void update(T t);
+    List<Products> deleteProducts(int id);
 }

@@ -1,7 +1,7 @@
-package ra.sevice.user;
+package sevice.user;
 
 import ra.model.Users;
-import ra.sevice.IGenericService;
+import sevice.IGenericService;
 
 public interface IUserService extends IGenericService<Users> {
     boolean existUsername(String username);

@@ -1,20 +1,21 @@
-package ra.sevice.user;
+package sevice.user;
 
 import ra.config.Config;
+import ra.model.Products;
 import ra.model.RoleName;
 import ra.model.Users;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserServiceIMPL implements ra.sevice.user.IUserService {
+public class UserServiceIMPL implements IUserService {
     static Config<List<Users>> config = new Config<>();
     public static List<Users> usersList;
     static {
         usersList = config.readFile(Config.URL_USERS);
         if (usersList == null){
             usersList = new ArrayList<>();
-            usersList.add(new Users(0,"ADMIN","admin","admin","admin@gmail.com",true, RoleName.AMIN));
+            usersList.add(new Users(0,"ADMIN","admin","admin","admin@gmail.com",true, RoleName.ADMIN));
             new UserServiceIMPL().updateData();
         }
     }
@@ -62,6 +63,16 @@ public class UserServiceIMPL implements ra.sevice.user.IUserService {
     @Override
     public void updateData() {
         config.writeFile(Config.URL_USERS, usersList);
+    }
+
+    @Override
+    public void update(Users users) {
+        updateData();
+    }
+
+    @Override
+    public List<Products> deleteProducts(int id) {
+        return null;
     }
 
     @Override

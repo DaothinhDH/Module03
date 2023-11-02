@@ -7,6 +7,9 @@ public class Config<T> {
         return new Scanner(System.in);
     }
     public static final String URL_USERS = "src/ra/config/data/users.txt";
+    public static final String URL_USER_LOGIN = "src/ra/config/data/usersLogin.txt";
+    public static final String URL_PRODUCT = "src/ra/config/data/product.txt";
+    public static final String URL_CATALOG = "src/ra/config/data/catalog.txt";
 
     public void writeFile(String PATH_FILE, T t) {
         File file = new File(PATH_FILE);
