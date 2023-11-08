@@ -25,6 +25,7 @@ public class UserServiceIMPL implements IUserService {
     }
     @Override
     public void save(Users users) {
+
         //kiem tra users co ton taij trong usersList khong
         if (findById(users.getId()) == null){ // neu chua ton tai trong danh sach
             usersList.add(users); // thi them moi
@@ -34,6 +35,8 @@ public class UserServiceIMPL implements IUserService {
             updateData();
         }
     }
+
+
     @Override
     public void delete(int id) {
         usersList.remove(findById(id));
@@ -103,5 +106,16 @@ public class UserServiceIMPL implements IUserService {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<Users> findName(String name) {
+        List <Users> foundUser = new ArrayList<>();
+        for (Users users : usersList){
+            if (users.getName().toLowerCase().contains(name)){
+                foundUser.add(users);
+            }
+        }
+        return foundUser;
     }
 }

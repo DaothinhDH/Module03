@@ -8,7 +8,7 @@ public class Validate {
                 n = Integer.parseInt(Config.scanner().nextLine());
                 break;
             }catch (NumberFormatException e){
-                System.out.println("Sai dinh dang moi nhap lai");
+                System.out.println("Sai định dạng mời nhập lại");
             }
         }
         return n;
@@ -18,7 +18,7 @@ public class Validate {
         while (true){
             s = Config.scanner().nextLine();
             if (s.isEmpty()){
-                System.out.println("Khong duoc de trong moi nhap lai");
+                System.out.println("Không được để trống mời nhập lại");
             }else{
                 break;
             }

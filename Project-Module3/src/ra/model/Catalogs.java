@@ -54,11 +54,10 @@ public class Catalogs implements Serializable {
 
     @Override
     public String toString() {
-        return "Catalogs{" +
+        return "Danh mục: " +
                 "Mã danh mục: " + catalogId +
                 ", Tên danh mục: '" + catalogName + '\'' +
                 ", Mô tả: '" + description + '\'' +
-                ", Trạng thái: " + (status ? "Mở" : "Đóng") +
-                '}';
+                ", Trạng thái: " + (status ? "Mở" : "Đóng");
     }
 }

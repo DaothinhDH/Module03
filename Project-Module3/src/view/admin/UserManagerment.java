@@ -1,10 +1,13 @@
-package view.acount;
+package view.admin;
 
 import ra.config.Validate;
 import ra.model.RoleName;
 import ra.model.Users;
 import sevice.user.IUserService;
 import sevice.user.UserServiceIMPL;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static ra.config.Color.*;
 import static ra.config.Color.RESET;
@@ -15,23 +18,21 @@ public class UserManagerment {
     public void menuUser() {
         int choice;
         do {
-//            System.out.println("\nXin chao: "+ Home.userLogin.getName());
-            System.out.println(PURPLE + "╔═════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("║                               MENU User                                             ║");
+            System.out.println(LIGHT_CYAN + "╔═════════════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                               "+ORANGE_2+"MENU User"+LIGHT_CYAN+"                                             ║");
             System.out.println("╠════╦════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  1.║                       Hiển thị danh sách người dùng                            ║");
+            System.out.println("║  1.║                       "+WHITE_BOLD_BRIGHT+"Hiển thị danh sách người dùng"+LIGHT_CYAN+"                            ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  2.║                       Tìm kiếm người dùng theo tên                             ║");
+            System.out.println("║  2.║                       "+WHITE_BOLD_BRIGHT+"Tìm kiếm người dùng theo tên"+LIGHT_CYAN+"                             ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  3.║                       Block/Unblock tài khoản người dùng                       ║");
+            System.out.println("║  3.║                       "+WHITE_BOLD_BRIGHT+"Block/Unblock tài khoản người dùng"+LIGHT_CYAN+"                       ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  4.║                       Thay đổi quyền truy cập tài khoản                        ║");
+            System.out.println("║  4.║                       "+WHITE_BOLD_BRIGHT+"Thay đổi quyền truy cập tài khoản"+LIGHT_CYAN+"                        ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  0.║                       Quay lại                                                 ║");
+            System.out.println("║  0.║                       "+WHITE_BOLD_BRIGHT+"Quay lại"+LIGHT_CYAN+"                                                 ║");
             System.out.println("╚════╩════════════════════════════════════════════════════════════════════════════════╝" + RESET);
-
             System.out.print(YELLOW + "Lựa chọn (0/1/2): " + RESET);
-            choice = Integer.parseInt(Validate.validateString());
+            choice = Validate.validateInt();
             switch (choice) {
                 case 1:
                     showUser();
@@ -58,22 +59,26 @@ public class UserManagerment {
         System.out.println("Nhập ID tài để thay đổi quyền truy cập");
         int idRole = Validate.validateInt();
         Users users = userService.findById(idRole);
-        if (users != null) {
-            System.out.println("1. admin");
-            System.out.println("2. User");
-            int choice = Validate.validateInt();
-            switch (choice) {
-                case 1:
-                    users.setRole(RoleName.ADMIN);
-                    break;
-                case 2:
-                    users.setRole(RoleName.USER);
-                    break;
-                default:
-                    System.out.println("Lựa chọn không hợp lệ");
-            }
-            userService.save(users);
+        if (users.getId()!=0) {
+            if (users != null) {
+                System.out.println("1. admin");
+                System.out.println("2. User");
+                int choice = Validate.validateInt();
+                switch (choice) {
+                    case 1:
+                        users.setRole(RoleName.ADMIN);
+                        break;
+                    case 2:
+                        users.setRole(RoleName.USER);
+                        break;
+                    default:
+                        System.out.println("Lựa chọn không hợp lệ");
+                }
+                userService.save(users);
 
+            }
+        }else {
+            System.out.println(YELLOW+"Tài khoản admin không được thay dổi"+RESET);
         }
     }
 
@@ -87,51 +92,52 @@ public class UserManagerment {
     private void hideUser() {
         System.out.println("Nhập ID người dùng muốn khóa/mở");
         int idUser = Validate.validateInt();
-        Users users = userService.findById(idUser);
-        if (users != null) {
-            System.out.println("1.Khóa tài khoản");
-            System.out.println("2.Mở Tài khoản");
-            int choice = Validate.validateInt();
-            switch (choice) {
-                case 1:
-                    if (users.isStatus()) {
-                        users.setStatus(false);
-                        userService.update(users);
-                        System.out.println("Tài khoản đã được khóa thành công");
-                    } else {
-                        System.out.println("Tài khoản này đã được khóa");
-                    }
-                    break;
-                case 2:
-                    if (users.isStatus()) {
-                        users.setStatus(true);
-                        userService.update(users);
-                        System.out.println("Tài khoản đã được mở khóa thành công");
-                    } else {
-                        System.out.println("Tài khoản này đã được mở khóa trước đó");
-                    }
-                    break;
+        if (idUser != 0) {
+            Users users = userService.findById(idUser);
+            if (users != null) {
+                System.out.println("1.Khóa tài khoản");
+                System.out.println("2.Mở Tài khoản");
+                int choice = Validate.validateInt();
+                switch (choice) {
+                    case 1:
 
-                default:
-                    System.out.println("Lựa chọn không hợp lệ");
-                    break;
+                        users.setStatus(false);
+                        System.out.println("Tài khoản đã được khóa thành công");
+
+                        userService.save(users);
+                        break;
+                    case 2:
+
+                        users.setStatus(true);
+                        System.out.println("Tài khoản đã được mở khóa thành công");
+
+                        userService.save(users);
+                        break;
+                    default:
+                        System.out.println("Lựa chọn không hợp lệ");
+                        break;
+                }
+            } else {
+                System.out.println(YELLOW + "Không tìm thấy" + RESET);
             }
+        }else {
+            System.out.println("Không được thay đổi admin");
         }
     }
 
     private void seachUser() {
-        System.out.println("Nhập từ khóa tìm kiếm");
+        System.out.println(YELLOW+"Nhập từ khóa tìm kiếm"+RESET);
         String seachUser = Validate.validateString();
-        int count = 0;
-        for (Users users : userService.findAll()) {
-            if (users.getUsername().toLowerCase().contains(seachUser)) {
+        List<Users> foundUsers = userService.findName(seachUser);
+        if (foundUsers.isEmpty()){
+            System.out.println(YELLOW+"Không tìm thấy người dùng"+RESET);
+        }else {
+            for (Users users : foundUsers) {
                 System.out.println(users);
-                count++;
             }
         }
-        System.out.printf("Tìm thấy %d người dùng theo từ khóa vừa nhập", count);
-    }
 
+    }
 }
 
 

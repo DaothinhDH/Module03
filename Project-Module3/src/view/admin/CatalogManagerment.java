@@ -1,9 +1,9 @@
-package view.acount;
+package view.admin;
 
 import ra.config.Validate;
 import ra.model.Catalogs;
-import sevice.product.CatalogServiceIMPL;
-import sevice.product.ICatalogService;
+import sevice.catalog.CatalogServiceIMPL;
+import sevice.catalog.ICatalogService;
 
 import static ra.config.Color.*;
 
@@ -14,25 +14,25 @@ public class CatalogManagerment  {
         int choice;
         do {
 //            System.out.println("\nXin chao: "+ Home.userLogin.getName());
-            System.out.println(PURPLE + "╔═════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("║                                      MENU CATALOG                                   ║");
+            System.out.println(LIGHT_CYAN + "╔═════════════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                                      "+ORANGE_2+"MENU CATALOG"+LIGHT_CYAN+"                                   ║");
             System.out.println("╠════╦════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  1 ║                            Hiển thị danh sách Danh mục                         ║");
+            System.out.println("║  1 ║                            "+WHITE_BOLD_BRIGHT+"Hiển thị danh sách Danh mục"+LIGHT_CYAN+"                         ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  2 ║                           Tạo mới danh mục                                     ║");
+            System.out.println("║  2 ║                           "+WHITE_BOLD_BRIGHT+"Tạo mới danh mục"+LIGHT_CYAN+"                                     ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  3 ║                           Tìm kiếm danh mục theo tên                           ║");
+            System.out.println("║  3 ║                           "+WHITE_BOLD_BRIGHT+"Tìm kiếm danh mục theo tên"+LIGHT_CYAN+"                           ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  4 ║                          Chỉnh sửa thông tin danh mục                          ║");
+            System.out.println("║  4 ║                          "+WHITE_BOLD_BRIGHT+"Chỉnh sửa thông tin danh mục"+LIGHT_CYAN+"                          ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  5 ║                          Ẩn danh mục theo mã danh mục                          ║");
+            System.out.println("║  5 ║                          "+WHITE_BOLD_BRIGHT+"Ẩn danh mục theo mã danh mục"+LIGHT_CYAN+"                          ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  6 ║                          Quay lại                                              ║");
-            System.out.println("╚════╩════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.println("║  6 ║                          "+WHITE_BOLD_BRIGHT+"Quay lại"+LIGHT_CYAN+"                                              ║");
+            System.out.println("╚════╩════════════════════════════════════════════════════════════════════════════════╝"+RESET);
 
 
             System.out.print(YELLOW + "Lựa chọn (0/1/2): " + RESET);
-            choice = Integer.parseInt(Validate.validateString());
+            choice = Validate.validateInt();
             switch (choice) {
                 case 1:
                     showCatalog();
@@ -87,12 +87,12 @@ public class CatalogManagerment  {
                         System.out.println("Danh mục đã được mở lai trước đó");
                     }
                     break;
-
                 default:
                     System.out.println("Lựa chọn không hợp lệ");
                     break;
             }
-
+        }else {
+            System.out.println("Không tìm thấy id vừa nhập");
         }
     }
 
@@ -100,30 +100,28 @@ public class CatalogManagerment  {
         System.out.println("Nhập ID danh mục cần thay đổi");
         int idEdit = Validate.validateInt();
         Catalogs catalogsEdit = catalogService.findById(idEdit);
-        System.out.println("1.Sửa tên danh mục");
-        System.out.println("2.Sửa  mô tả");
-        System.out.println("3.Sửa trạng thái");
-        int choice = Validate.validateInt();
-        switch (choice) {
-            case 1:
-                System.out.println("Nhập tên mới");
-                catalogsEdit.setCatalogName(Validate.validateString());
-                catalogService.updateData();
-                System.out.println("Sửa tên danh mục thành công");
-                break;
-            case 2:
-                System.out.println("Sửa mô tả danh mục");
-                catalogsEdit.setDescription(Validate.validateString());
-                catalogService.updateData();
-                System.out.println("Sửa mô tả danh mục thành công");
-                break;
-            case 3:
-                System.out.println("Cập nhật lại trạng thái true/false");
-                catalogsEdit.setStatus(false);
-                catalogService.updateData();
-                break;
-            default:
-                System.out.println("Không tìm thấy id vừa nhập vào");
+        if(catalogsEdit != null) {
+            System.out.println("1.Sửa tên danh mục");
+            System.out.println("2.Sửa  mô tả");
+            int choice = Validate.validateInt();
+            switch (choice) {
+                case 1:
+                    System.out.println("Nhập tên mới");
+                    catalogsEdit.setCatalogName(Validate.validateString());
+                    catalogService.updateData();
+                    System.out.println("Sửa tên danh mục thành công");
+                    break;
+                case 2:
+                    System.out.println("Sửa mô tả danh mục");
+                    catalogsEdit.setDescription(Validate.validateString());
+                    catalogService.updateData();
+                    System.out.println("Sửa mô tả danh mục thành công");
+                    break;
+                default:
+                    System.out.println("Không tìm thấy id vừa nhập vào");
+            }
+        }else {
+            System.out.println(RED+"không tim thấy id vừa nhập"+RESET);
         }
     }
 
@@ -143,14 +141,10 @@ public class CatalogManagerment  {
     }
 
     private void showCatalog() {
-        System.out.println("1.Tất cả danh mục");
-        int n = Validate.validateInt();
-        if (n == 1) {
             System.out.println("Tất cả danh mục");
             for (Catalogs catalogs : catalogService.findAll()) {
                 System.out.println(catalogs);
             }
-        }
     }
 
     private void addCatalog() {

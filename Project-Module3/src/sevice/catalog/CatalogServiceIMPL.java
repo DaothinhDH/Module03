@@ -1,4 +1,4 @@
-package sevice.product;
+package sevice.catalog;
 
 import ra.config.Config;
 import ra.model.Catalogs;
@@ -78,5 +78,16 @@ public class CatalogServiceIMPL implements ICatalogService {
     @Override
     public List<Products> deleteProducts(int id) {
         return null;
+    }
+
+    @Override
+    public List<Catalogs> findName(String name) {
+        List <Catalogs> foundCatalogs = new ArrayList<>();
+        for (Catalogs catalog : catalogsList){
+           if (catalog.getCatalogName().toLowerCase().contains(name)){
+               foundCatalogs.add(catalog);
+           }
+        }
+        return catalogsList;
     }
 }

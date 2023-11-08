@@ -10,6 +10,8 @@ public class Config<T> {
     public static final String URL_USER_LOGIN = "src/ra/config/data/usersLogin.txt";
     public static final String URL_PRODUCT = "src/ra/config/data/product.txt";
     public static final String URL_CATALOG = "src/ra/config/data/catalog.txt";
+    public static final String URL_CART = "src/ra/config/data/cart.txt";
+    public static final String URL_ODER = "src/ra/config/data/oder.txt";
 
     public void writeFile(String PATH_FILE, T t) {
         File file = new File(PATH_FILE);

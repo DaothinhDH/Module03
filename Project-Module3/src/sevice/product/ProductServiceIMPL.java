@@ -84,6 +84,13 @@ public class ProductServiceIMPL implements IProductService {
 
     @Override
     public List<Products> findName(String name) {
-        return null;
+        List<Products> foundProducts = new ArrayList<>();
+        for (Products products : productsList) {
+            if (products.getProductName().toLowerCase().contains(name)){
+                foundProducts.add(products);
+            }
+        }
+        return foundProducts;
     }
+
 }

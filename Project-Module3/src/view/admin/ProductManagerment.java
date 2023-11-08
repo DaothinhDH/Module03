@@ -1,37 +1,42 @@
-package view.acount;
+package view.admin;
 
+import ra.config.Config;
 import ra.config.Validate;
 import ra.model.Catalogs;
 import ra.model.Products;
-import sevice.product.CatalogServiceIMPL;
-import sevice.product.ICatalogService;
+import ra.model.Users;
+import sevice.catalog.CatalogServiceIMPL;
+import sevice.catalog.ICatalogService;
 import sevice.product.IProductService;
 import sevice.product.ProductServiceIMPL;
+
+import java.util.List;
 
 import static ra.config.Color.*;
 
 public class ProductManagerment {
     IProductService productService = new ProductServiceIMPL();
     ICatalogService catalogService = new CatalogServiceIMPL();
+    static Config <Users> config = new Config<>();
     public void menuProduct() {
         int choice;
         do {
 //            System.out.println("\nXin chao: "+ Home.userLogin.getName());
-            System.out.println(PURPLE + "╔═════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("║                               MENU Product                                          ║");
+            System.out.println(LIGHT_CYAN + "╔═════════════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                               "+ORANGE_2+"MENU PRODUCT"+LIGHT_CYAN+"                                          ║");
             System.out.println("╠════╦════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  1.║                       Hiển thị danh sách sản phẩm                              ║");
+            System.out.println("║  1.║                       "+WHITE_BOLD_BRIGHT+"Hiển thị danh sách sản phẩm"+LIGHT_CYAN+"                              ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  2.║                       Thêm mới 1 hoặc nhiều sản phẩm                           ║");
+            System.out.println("║  2.║                       "+WHITE_BOLD_BRIGHT+"Thêm mới 1 hoặc nhiều sản phẩm"+LIGHT_CYAN+"                           ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  3.║                       Chỉnh sửa thông tin sản phẩm                             ║");
+            System.out.println("║  3.║                       "+WHITE_BOLD_BRIGHT+"Chỉnh sửa thông tin sản phẩm"+LIGHT_CYAN+"                             ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  4.║                       Ẩn sản phẩm theo mã sản phẩm                             ║");
+            System.out.println("║  4.║                       "+WHITE_BOLD_BRIGHT+"Ẩn sản phẩm theo mã sản phẩm"+LIGHT_CYAN+"                             ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  5.║                       Tìm kiếm sản phẩm theo tên                               ║");
+            System.out.println("║  5.║                       "+WHITE_BOLD_BRIGHT+"Tìm kiếm sản phẩm theo tên"+LIGHT_CYAN+"                               ║");
             System.out.println("╠════╬════════════════════════════════════════════════════════════════════════════════╣");
-            System.out.println("║  6.║                       Quay lại                                                 ║");
-            System.out.println("╚════╩════════════════════════════════════════════════════════════════════════════════╝" +RESET);
+            System.out.println("║  6.║                       "+WHITE_BOLD_BRIGHT+"Quay lại"+LIGHT_CYAN+"                                                 ║");
+            System.out.println(LIGHT_CYAN+"╚════╩════════════════════════════════════════════════════════════════════════════════╝" +RESET);
 
             System.out.print(YELLOW + "Lựa chọn (0/1/2): " + RESET);
             choice = Integer.parseInt(Validate.validateString());
@@ -52,7 +57,7 @@ public class ProductManagerment {
                     searchProduct();
                     break;
                 case 6:
-                    return;
+                    break;
                 default:
                     System.out.println(RED + "lựa chọn không hợp lệ vui lòng nhập lại" + RESET);
                     break;
@@ -64,16 +69,14 @@ public class ProductManagerment {
     private void searchProduct() {
         System.out.println("Nhập tên sản phẩm muốn tìm: ");
         String search = Validate.validateString().toLowerCase();
-        int count = 0;
-        System.out.println("Danh sách sản phẩm cần tìm: ");
-        for (Products product : productService.findAll()) {
-            if (product.getProductName().toLowerCase().contains(search)) {
-                System.out.println(product);
-                count++;
+        List<Products> foundProducts = productService.findName(search);
+        if (foundProducts.isEmpty()) {
+            System.out.println("Không tìm thấy sản phẩm");
+        }else {
+            for (Products products : foundProducts) {
+                products.display();
             }
         }
-        System.out.printf("Tìm thấy %d sản phẩm theo từ khoá vừa nhập ", count);
-        System.out.println();
     }
 
     private void hidenproduct() {
@@ -122,16 +125,17 @@ public class ProductManagerment {
         Products productedit = productService.findById(idEdit);
 
         if (productedit != null) {
-            System.out.println("1_ Sửa tên sản phẩm");
+            System.out.println(YELLOW+"1_ Sửa tên sản phẩm");
             System.out.println("2_ Sửa danh mục sản phẩm");
             System.out.println("3_ Sửa mô tả sản phẩm");
             System.out.println("4_ Sửa đơn giá");
-            System.out.println("5_ Sửa số lượng trong kho");
+            System.out.println("5_ Sửa số lượng trong kho"+ RESET);
             int choice = Validate.validateInt();
             switch (choice) {
                 case 1:
                     System.out.println("Nhập tên mới: ");
                     productedit.setProductName(Validate.validateString());
+                    productService.save(productedit);
                     System.out.println("Sửa tên thành công!");
                     break;
                 case 2:
@@ -149,21 +153,25 @@ public class ProductManagerment {
                             System.out.println(RED + "Không có danh mục theo lựa chọn, mời nhập lại" + RESET);
                         }
                     }
+                    productService.save(productedit);
                     System.out.println("Sửa danh mục thành công!");
                     break;
                 case 3:
                     System.out.println("Nhập mô tả sản phẩm mới: ");
                     productedit.setDescription(Validate.validateString());
+                    productService.save(productedit);
                     System.out.println("Sửa mô tả thành công!");
                     break;
                 case 4:
                     System.out.println("Nhập đơn giá mới: ");
                     productedit.setUnitPrice(Double.parseDouble(Validate.validateString()));
+                    productService.save(productedit);
                     System.out.println("Sửa đơn giá thành công!");
                     break;
                 case 5:
                     System.out.println("Nhập mới số lượng hàng tồn kho: ");
                     productedit.setStock(Integer.parseInt(Validate.validateString()));
+                    productService.save(productedit);
                     System.out.println("Sửa số lượng thành công!");
                     break;
                 default:
@@ -230,26 +238,33 @@ public class ProductManagerment {
         System.out.println("2.Sản phẩm mở bán");
         System.out.println("3.Sản phẩm không mở bán");
         System.out.println("0.Quay lại");
-
         int n = Validate.validateInt();
 
         if (n ==1 ){
-            System.out.println("Tất cả sản phẩm");
+            int menuWidth = 30;
+            String greeting = String.format("XIN CHÀO: %-" + (menuWidth - 14) + "s", config.readFile(Config.URL_USER_LOGIN).getName());
+            System.out.println(LIGHT_CYAN+"╔═════════════════════════════════════"+ORANGE_2+"DANH SÁCH SẢN PHẨM"+LIGHT_CYAN+"═════════════════════════════════════════════════╗");
+            System.out.println("║    "+ORANGE_2+"0. Đăng xuất"+"                                                              " + greeting + ""+LIGHT_CYAN+"║");
+            System.out.println("╠════════════════════════════════════════════════════════════════════════════════════════════════════════╣");
+            System.out.println("║  *  ║      "+ORANGE_2+"TÊN SẢN PHẨM"+LIGHT_CYAN+"        ║     "+ORANGE_2+"GIÁ BÁN"+LIGHT_CYAN+"      ║  "+ORANGE_2+"SỐ LƯỢNG"+LIGHT_CYAN+" ║              "+ORANGE_2+"MÔ TẢ SẢN PHẨM"+LIGHT_CYAN+"            ║");
+            System.out.println("╠════════════════════════════════════════════════════════════════════════════════════════════════════════╣");
             for (Products products : productService.findAll()) {
-                System.out.println(products);
+                products.display();
             }
+            System.out.println(LIGHT_CYAN+"╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝"+RESET);
+
         } else if (n == 2) {
             System.out.println("Sản phẩm đang mở bán");
             for (Products products : productService.findAll()) {
                 if (products.isStatus()){
-                    System.out.println(products);
+                    products.display();
                 }
             }
         }else if (n == 3) {
             System.out.println("Sản phẩm không mở bán");
             for (Products products : productService.findAll()) {
                 if (!products.isStatus()){
-                    System.out.println(products);
+                    products.display();
                 }
             }
         }else {
