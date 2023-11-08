@@ -57,7 +57,7 @@ public class ProductManagerment {
                     searchProduct();
                     break;
                 case 6:
-                    break;
+                    return;
                 default:
                     System.out.println(RED + "lựa chọn không hợp lệ vui lòng nhập lại" + RESET);
                     break;

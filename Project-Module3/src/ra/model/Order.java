@@ -130,7 +130,7 @@ public class Order implements Serializable {
     }
 
     public void display() {
-        System.out.printf("|   %-5d|   %-20s|    %-17s|   %-41s|    %-20s|  %-17s|   %-11s|\n",
+        System.out.printf("║   %-4d║   %-13s║    %-14s║   %-18s║    %-18s║  %-13s║   %-11s║\n",
                 orderId, name, phoneNumber, address, dateFormat.format(orderAt), (formatter.format(total) + " VND"),
                 (orderStatus == OrderStatus.WAITING ? "Đang Đợi" : orderStatus == OrderStatus.CONFIRM ? "Xác Nhận" : "Hủy Đơn"));
     }

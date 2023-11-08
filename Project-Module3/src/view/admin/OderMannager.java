@@ -53,10 +53,8 @@ public class OderMannager {
 
     public void showOrder() {
         if (oderService != null) {
-            System.out.println(LIGHT_CYAN + "╔══════════════════════" + WHITE_BOLD_BRIGHT + "DANH SÁCH ĐƠN HÀNG" + LIGHT_CYAN + "═════════════════════════╗");
-            System.out.println("║                                                                                                                                                                 ║");
-            System.out.println("║-" + ORANGE_2 + "MÃ ĐƠN" + LIGHT_CYAN + "║════════" + WHITE_BOLD_BRIGHT + "TÊN NGƯỜI ĐẶT" + LIGHT_CYAN + "════════║════════" + WHITE_BOLD_BRIGHT + "SỐ ĐIỆN THOẠI" + LIGHT_CYAN + "════════║════════" + WHITE_BOLD_BRIGHT + "ĐỊA CHỈ GIAO HÀNG" + LIGHT_CYAN + "-------------║---" + WHITE_BOLD_BRIGHT + "GIỜI GIAN ĐẶT HÀNG" + LIGHT_CYAN + "════════║════════" + WHITE_BOLD_BRIGHT + "GIÁ TRỊ ĐƠN" + LIGHT_CYAN + "════════║════════" + WHITE_BOLD_BRIGHT + "TRẠNG THÁI" + LIGHT_CYAN + "════════");
-
+            System.out.println(LIGHT_CYAN + "╔══════════════════════════════════════════════════" + ORANGE_2 + "DANH SÁCH ĐƠN HÀNG" + LIGHT_CYAN + "═══════════════════════════════════════════════════╗");
+            System.out.println("║-" + ORANGE_2 + "MÃ ĐƠN" + LIGHT_CYAN + "║══" + WHITE_BOLD_BRIGHT + "TÊN NGƯỜI ĐẶT" + LIGHT_CYAN + "══║══" + WHITE_BOLD_BRIGHT + "SỐ ĐIỆN THOẠI" + LIGHT_CYAN + "══║══" + WHITE_BOLD_BRIGHT + "ĐỊA CHỈ GIAO HÀNG" + LIGHT_CYAN + "══║══" + WHITE_BOLD_BRIGHT + "GIỜI GIAN ĐẶT HÀNG" + LIGHT_CYAN + "══║══" + WHITE_BOLD_BRIGHT + "GIÁ TRỊ ĐƠN" + LIGHT_CYAN + "══║══" + WHITE_BOLD_BRIGHT + "TRẠNG THÁI" + LIGHT_CYAN + "══║");
             if (oderService.findAll().isEmpty()) {
                 System.out.println("║                                                                                                                                                           ║");
                 System.out.println("║                                                                Danh mục đang trống!                                                                       ║" + RESET);
@@ -70,9 +68,9 @@ public class OderMannager {
         }
 
 
-        System.out.println(LIGHT_CYAN + "║══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════║");
-        System.out.println("║              " + WHITE_BOLD_BRIGHT + "1. XEM CHI TIẾT ĐƠN HÀNG" + LIGHT_CYAN + "               ║               " + WHITE_BOLD_BRIGHT + "2. THAY ĐỔI TRẠNG THÁI ĐƠN HÀNG" + LIGHT_CYAN + "               ║                 " + WHITE_BOLD_BRIGHT + "0. QUAY LẠI" + LIGHT_CYAN + "                 ║");
-        System.out.println("════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════'" + RESET);
+        System.out.println(LIGHT_CYAN + "║═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════║");
+        System.out.println("║         " + WHITE_BOLD_BRIGHT + "1. XEM CHI TIẾT ĐƠN HÀNG" + LIGHT_CYAN + "          ║         " + WHITE_BOLD_BRIGHT + "2. THAY ĐỔI TRẠNG THÁI ĐƠN HÀNG" + LIGHT_CYAN + "        ║        " + WHITE_BOLD_BRIGHT + "0. QUAY LẠI" + LIGHT_CYAN + "       ║");
+        System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝'" + RESET);
 
         System.out.print("Mời nhập lựa chọn: ");
         int choice = Validate.validateInt();
@@ -181,11 +179,9 @@ public class OderMannager {
         if (foundOrders.isEmpty()) {
             System.out.println("Không tìm thấy đơn hàng cho khách hàng: " + customerName);
         } else {
-            System.out.println(LIGHT_CYAN + "╔══════════════════════" + WHITE_BOLD_BRIGHT + "THÔNG TIN ĐƠN HÀNG" + LIGHT_CYAN + "═════════════════════════╗");
-            System.out.println("║                                                                       ║" + RESET);
+            System.out.println(LIGHT_CYAN + "╔═══════════════════════════════════" + WHITE_BOLD_BRIGHT + "THÔNG TIN ĐƠN HÀNG" + LIGHT_CYAN + "═════════════════════════╗");
             for (Order order : foundOrders) {
                 order.display();
-
                 orderDetailProduct(order);
             }
         }
@@ -193,14 +189,13 @@ public class OderMannager {
 
     public void orderDetailProduct(Order order) {
 
-        System.out.println(LIGHT_CYAN + "╔══════════════════════" + WHITE_BOLD_BRIGHT + "CHI TIẾT SẢN PHẨM" + LIGHT_CYAN + "═════════════════════════╗");
-        System.out.println("|                                                                       |");
-        System.out.println("|--" + WHITE_BOLD_BRIGHT + "*" + LIGHT_CYAN + "--|------" + WHITE_BOLD_BRIGHT + "TÊN SẢN PHẨM" + LIGHT_CYAN + "------|-" + WHITE_BOLD_BRIGHT + "SỐ LƯỢNG" + LIGHT_CYAN + "-|----------" + WHITE_BOLD_BRIGHT + "GIÁ TIỀN" + LIGHT_CYAN + "-----------|");
+        System.out.println(LIGHT_CYAN + "╔══════════════════════" + WHITE_BOLD_BRIGHT + "CHI TIẾT SẢN PHẨM" + LIGHT_CYAN + "═══════════════════╗");
+        System.out.println("║══════════" + WHITE_BOLD_BRIGHT + "TÊN SẢN PHẨM" + LIGHT_CYAN + "══════════|-" + WHITE_BOLD_BRIGHT +      "SỐ LƯỢNG" + LIGHT_CYAN + "-║═══" + WHITE_BOLD_BRIGHT +     "GIÁ TIỀN" + LIGHT_CYAN + "═══║");
         order.getOrderDetails().forEach(Orderdetail::display);
-        System.out.println("'-----------------------------------------------------------------------'");
+        System.out.println("╚═══════════════════════════════════════════════════════════╝");
         System.out.println();
-        System.out.println(".---------------------------" + WHITE_BOLD_BRIGHT + "THÔNG TIN ĐƠN HÀNG" + LIGHT_CYAN + "--------------------------.");
-        System.out.println("|                                                                       |" + RESET);
+//        System.out.println(".---------------------------" + WHITE_BOLD_BRIGHT + "THÔNG TIN ĐƠN HÀNG" + LIGHT_CYAN + "--------------------------.");
+//        System.out.println("|                                                                       |" + RESET);
     }
 
     public void sortOderTime() {
@@ -212,15 +207,15 @@ public class OderMannager {
 
         Collections.sort(allOrders, Comparator.comparing(Order::getOrderAt).reversed());
 
-        System.out.println(LIGHT_CYAN + ".----------------------------------------------------" + WHITE_BOLD_BRIGHT + "DANH SÁCH ĐƠN HÀNG (SẮP XẾP THEO THỜI GIAN ĐẶT HÀNG)" + LIGHT_CYAN + "---------------------------------------------------------.");
+        System.out.println(LIGHT_CYAN + "╔══════════════════════" + WHITE_BOLD_BRIGHT + "DANH SÁCH ĐƠN HÀNG (SẮP XẾP THEO THỜI GIAN ĐẶT HÀNG)" + LIGHT_CYAN + "═════════════════════════╗");
         System.out.println("|                                                                                                                                                                |");
-        System.out.println("|-" + WHITE_BOLD_BRIGHT + "MÃ ĐƠN" + LIGHT_CYAN + "-|-----" + WHITE_BOLD_BRIGHT + "TÊN NGƯỜI ĐẶT" + LIGHT_CYAN + "-----|----" + WHITE_BOLD_BRIGHT + "SỐ ĐIỆN THOẠI" + LIGHT_CYAN + "----|--------------" + WHITE_BOLD_BRIGHT + "ĐỊA CHỈ GIAO HÀNG" + LIGHT_CYAN + "-------------|---" + WHITE_BOLD_BRIGHT + "GIỜI GIAN ĐẶT HÀNG" + LIGHT_CYAN + "---|-----" + WHITE_BOLD_BRIGHT + "GIÁ TRỊ ĐƠN" + LIGHT_CYAN + "-----|--" + WHITE_BOLD_BRIGHT + "TRẠNG THÁI" + LIGHT_CYAN + "--|");
+        System.out.println("|-" + WHITE_BOLD_BRIGHT + "MÃ ĐƠN" + LIGHT_CYAN + "-|--" + WHITE_BOLD_BRIGHT + "TÊN NGƯỜI ĐẶT" + LIGHT_CYAN + "--|--" + WHITE_BOLD_BRIGHT + "SỐ ĐIỆN THOẠI" + LIGHT_CYAN + "--|--" + WHITE_BOLD_BRIGHT + "ĐỊA CHỈ GIAO HÀNG" + LIGHT_CYAN + "--|--" + WHITE_BOLD_BRIGHT + "GIỜI GIAN ĐẶT HÀNG" + LIGHT_CYAN + "--|--" + WHITE_BOLD_BRIGHT + "GIÁ TRỊ ĐƠN" + LIGHT_CYAN + "--|--" + WHITE_BOLD_BRIGHT + "TRẠNG THÁI" + LIGHT_CYAN + "--|");
 
         for (Order order : allOrders) {
             order.display();
         }
 
-        System.out.println("`-----------------------------------------------------------------------------------------------------------------------------------------------------------------'" + RESET);
+        System.out.println("`---------------------------------------------------------------------------------------------------------------'" + RESET);
     }
 
     private void orderDetailShow() {
@@ -230,9 +225,8 @@ public class OderMannager {
         if (foundOrders == null) {
             System.out.println("Không tìm thấy đơn hàng có ID: " + orderIdEdit);
         } else {
-            System.out.println(LIGHT_CYAN + ".-----------------------------" + WHITE_BOLD_BRIGHT + "THÔNG TIN ĐƠN HÀNG" + LIGHT_CYAN + "------------------------.");
-            System.out.println("|                                                                       |" + RESET);
-
+            System.out.println(LIGHT_CYAN + "╔════════════════════════════════════════════════" + ORANGE_2 + "THÔNG TIN ĐƠN HÀNG" + LIGHT_CYAN + "══════════════════════════════════════════════════╗");
+            System.out.println("║-" + ORANGE_2 + "MÃ ĐƠN" + LIGHT_CYAN + "║══" + WHITE_BOLD_BRIGHT + "TÊN NGƯỜI ĐẶT" + LIGHT_CYAN + "══║══" + WHITE_BOLD_BRIGHT + "SỐ ĐIỆN THOẠI" + LIGHT_CYAN + "══║══" + WHITE_BOLD_BRIGHT + "ĐỊA CHỈ GIAO HÀNG" + LIGHT_CYAN + "══║══" + WHITE_BOLD_BRIGHT + "GIỜI GIAN ĐẶT HÀNG" + LIGHT_CYAN + "══║══" + WHITE_BOLD_BRIGHT + "GIÁ TRỊ ĐƠN" + LIGHT_CYAN + "══║══" + WHITE_BOLD_BRIGHT + "TRẠNG THÁI" + LIGHT_CYAN + "══║");
             foundOrders.display();
             orderDetailProduct(foundOrders);
 

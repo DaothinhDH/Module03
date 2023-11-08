@@ -70,7 +70,7 @@ public class Login {
                 if (users.isStatus()){
                     config.writeFile(Config.URL_USER_LOGIN,users); // ghi đối tượng Users đang đăng nhập vào file
                     // chuyen den trang user
-                    System.out.println("YELLOW+\"Đăng nhập thành công\"+RESET");
+                    System.out.println(YELLOW+"Đăng nhập thành công"+RESET);
                     new UserManager().menuUser();
                 }else {
                     System.out.println(RED+"Tài khoản của bạn đã bị khóa"+RESET);
